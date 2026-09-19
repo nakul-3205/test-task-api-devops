@@ -1,0 +1,48 @@
+```
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Environment variables
+.env
+.env.local
+.env.*
+
+# Prisma
+prisma/migrations/
+
+# TypeScript
+*.tsbuildinfo
+*.js.map
+*.d.ts
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.jest/
+.nyc_output/
+coverage/
+
+# Docker
+.dockerenv
+```
