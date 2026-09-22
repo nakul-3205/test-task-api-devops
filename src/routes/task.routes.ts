@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Response, NextFunction } from 'express';
 import { TaskService } from '../services/task.service';
 import { authenticate, AuthRequest } from '../middleware/auth';
 import { taskValidator, idParamValidator } from '../middleware/validators';
@@ -9,7 +9,7 @@ const taskService = new TaskService();
 // All routes require authentication
 router.use(authenticate);
 
-router.get('/', async (req: AuthRequest, res, next) => {
+router.get('/', async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const tasks = await taskService.getAllTasks(req.userId!);
     
@@ -22,7 +22,7 @@ router.get('/', async (req: AuthRequest, res, next) => {
   }
 });
 
-router.get('/:id', idParamValidator, async (req: AuthRequest, res, next) => {
+router.get('/:id', idParamValidator, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const task = await taskService.getTaskById(req.params.id, req.userId!);
     
@@ -35,7 +35,7 @@ router.get('/:id', idParamValidator, async (req: AuthRequest, res, next) => {
   }
 });
 
-router.post('/', taskValidator, async (req: AuthRequest, res, next) => {
+router.post('/', taskValidator, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const { title, description } = req.body;
     const task = await taskService.createTask(req.userId!, title, description);
@@ -49,7 +49,7 @@ router.post('/', taskValidator, async (req: AuthRequest, res, next) => {
   }
 });
 
-router.patch('/:id', idParamValidator, taskValidator, async (req: AuthRequest, res, next) => {
+router.patch('/:id', idParamValidator, taskValidator, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const { title, description, completed } = req.body;
     const task = await taskService.updateTask(
@@ -69,7 +69,7 @@ router.patch('/:id', idParamValidator, taskValidator, async (req: AuthRequest, r
   }
 });
 
-router.delete('/:id', idParamValidator, async (req: AuthRequest, res, next) => {
+router.delete('/:id', idParamValidator, async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     await taskService.deleteTask(req.params.id, req.userId!);
     
