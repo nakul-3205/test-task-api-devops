@@ -1,48 +1,37 @@
 ```
 # Dependencies
 node_modules/
-.pnpm-store/
 
-# Build outputs
+# Build artifacts
 dist/
-build/
-coverage/
+*.d.ts
+*.d.ts.map
+*.js
+*.js.map
 
-# Environment variables
+# Environment
 .env
 .env.local
 .env.*
 
 # Prisma
 prisma/migrations/
-
-# TypeScript
-*.tsbuildinfo
-*.js.map
-*.d.ts
+*.db
+*.db-journal
 
 # Logs
 *.log
 
-# Temporary files
-*.tmp
-*.temp
+# Coverage
+coverage/
+htmlcov/
 
-# OS generated files
+# IDE
+.vscode/
+.idea/
+
+# OS
 .DS_Store
 Thumbs.db
 
-# IDE specific
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Testing
-.jest/
-.nyc_output/
-coverage/
-
-# Docker
-.dockerenv
 ```
