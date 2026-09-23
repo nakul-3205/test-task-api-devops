@@ -1,5 +1,6 @@
 import app from './app';
 import prisma from './db/prisma';
+import { closeRedisClient } from './db/prisma';
 
 const PORT = process.env.PORT || 3000;
 
@@ -16,6 +17,9 @@ const gracefulShutdown = async (signal: string) => {
     // Close database connections
     await prisma.$disconnect();
     console.log('Database connections closed');
+    
+    // Close Redis connection
+    await closeRedisClient();
     
     // Close server
     server.close(() => {
